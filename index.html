@@ -370,12 +370,98 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
   /* Mobile tweaks */
   @media (max-width: 480px) {
     .proof-grid { grid-template-columns: repeat(2, 1fr); }
     .feat-grid { grid-template-columns: 1fr 1fr; }
   }
+  /* OFFER TIMER BAR */
+  #offer-timer-bar {
+    background: linear-gradient(90deg, #ff0000, #cc0000, #ff0000);
+    background-size: 200% 100%;
+    animation: timerPulse 1.5s ease-in-out infinite;
+    color: #fff;
+    text-align: center;
+    padding: 12px 16px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 12px rgba(255,0,0,0.5);
+  }
+
+  #offer-countdown {
+    background: #fff;
+    color: #cc0000;
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 6px;
+    min-width: 70px;
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  #offer-timer-label {
+    font-size: 0.95rem;
+    opacity: 0.95;
+  }
+
+  #offer-timer-bar.expired {
+    background: #333;
+    animation: none;
+  }
+
+  @keyframes timerPulse {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2158572818213003');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2158572818213003&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -391,6 +477,13 @@
     <span>🔥 5000+ MEMBERS ALREADY JOINED</span>
     <span>✅ DAILY PAYMENT PROOF</span>
   </div>
+</div>
+
+<!-- OFFER TIMER -->
+<div id="offer-timer-bar">
+  <span id="offer-timer-text">⏳ ഈ Offer അവസാനിക്കുന്നു:</span>
+  <span id="offer-countdown">10:00</span>
+  <span id="offer-timer-label">⚠️ HURRY UP!</span>
 </div>
 
 <!-- HERO -->
@@ -410,7 +503,7 @@
 </section>
 
 <!-- STATS -->
-<section class="stats">
+<section class="stats reveal">
   <div class="stats-grid">
     <div class="stat-item">
       <div class="stat-num">5K+</div>
@@ -432,26 +525,26 @@
 </section>
 
 <!-- FEATURES -->
-<section class="features">
+<section class="features reveal">
   <div class="section-title">എന്തുകൊണ്ട് <span>Join ചെയ്യണം?</span></div>
   <div class="section-sub">Why you should join our group</div>
   <div class="feat-grid">
-    <div class="feat-card">
+    <div class="feat-card reveal">
       <div class="feat-icon">🎯</div>
       <div class="feat-title">100% Accurate Tips</div>
       <div class="feat-desc">Daily verified predictions with high accuracy. Proof available for every tip.</div>
     </div>
-    <div class="feat-card">
+    <div class="feat-card reveal reveal-delay-1">
       <div class="feat-icon">💸</div>
       <div class="feat-title">Daily Earnings</div>
       <div class="feat-desc">Members earn ₹2000 to ₹4000 every single day from our group tips.</div>
     </div>
-    <div class="feat-card">
+    <div class="feat-card reveal reveal-delay-2">
       <div class="feat-icon">🔐</div>
       <div class="feat-title">Private VIP Group</div>
       <div class="feat-desc">Exclusive access. Limited slots. Join before it fills up.</div>
     </div>
-    <div class="feat-card">
+    <div class="feat-card reveal reveal-delay-3">
       <div class="feat-icon">📲</div>
       <div class="feat-title">Easy to Follow</div>
       <div class="feat-desc">Simple instructions. Anyone can earn — no experience needed.</div>
@@ -460,7 +553,7 @@
 </section>
 
 <!-- PROOF SECTION -->
-<section class="proof">
+<section class="proof reveal">
   <div class="section-title" style="margin-bottom:8px">Payment <span>Proof</span></div>
   <div class="section-sub">Real screenshots from our members • Add your images below</div>
 
@@ -475,7 +568,7 @@
 </section>
 
 <!-- BOTTOM CTA -->
-<section class="bottom-cta">
+<section class="bottom-cta reveal">
   <div class="section-title">Ready to <span>Earn Daily?</span></div>
   <p>
     ഇനി wait ചെയ്യേണ്ട — ഇന്ന് തന്നെ join ചെയ്ത് <strong>₹2000–₹4000</strong> earn ചെയ്യാൻ തുടങ്ങൂ!
@@ -486,6 +579,76 @@
 <footer>
   © 2026 Money Making Group | Prediction Hack | Kerala
 </footer>
+
+<!-- Subscribe Click Tracking -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll("a, button");
+
+  buttons.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      fbq('track', 'Subscribe');
+      setTimeout(function(){
+        if (btn.href) window.location.href = btn.href;
+      }, 300);
+    });
+  });
+});
+</script>
+
+<!-- Offer Timer Script -->
+<script>
+(function() {
+  var TIMER_KEY = 'offerTimerEnd';
+  var DURATION = 10 * 60 * 1000; // 10 minutes
+
+  var endTime = localStorage.getItem(TIMER_KEY);
+  if (!endTime) {
+    endTime = Date.now() + DURATION;
+    localStorage.setItem(TIMER_KEY, endTime);
+  } else {
+    endTime = parseInt(endTime);
+  }
+
+  var countdown = document.getElementById('offer-countdown');
+  var bar = document.getElementById('offer-timer-bar');
+  var label = document.getElementById('offer-timer-label');
+
+  function update() {
+    var remaining = endTime - Date.now();
+    if (remaining <= 0) {
+      countdown.textContent = '00:00';
+      label.textContent = '❌ OFFER ENDED!';
+      bar.classList.add('expired');
+      return;
+    }
+    var mins = Math.floor(remaining / 60000);
+    var secs = Math.floor((remaining % 60000) / 1000);
+    countdown.textContent = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+    setTimeout(update, 500);
+  }
+
+  update();
+})();
+</script>
+
+<!-- Scroll Reveal -->
+<script>
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+</script>
 
 </body>
 </html>
