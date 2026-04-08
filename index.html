@@ -584,12 +584,11 @@ src="https://www.facebook.com/tr?id=2158572818213003&ev=PageView&noscript=1"
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const buttons = document.querySelectorAll("a, button");
-
   buttons.forEach(function(btn){
     btn.addEventListener("click", function(){
       fbq('track', 'Subscribe');
       setTimeout(function(){
-        if (btn.href) window.location.href = btn.href;
+        window.location.href = btn.href;
       }, 300);
     });
   });
@@ -654,4 +653,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
- 
